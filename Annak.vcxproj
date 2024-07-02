@@ -128,17 +128,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Annak.cpp" />
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="ConfigurationReader.cpp" />
     <ClCompile Include="CppGame\Command.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cell.h" />
     <ClInclude Include="ConfigurationReader.h" />
     <ClInclude Include="CppGame\Command.h" />
     <ClInclude Include="CppGame\json.hpp" />
     <ClInclude Include="CppGame\Utility.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

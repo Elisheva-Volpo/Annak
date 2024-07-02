@@ -1,4 +1,9 @@
 ﻿  Annak.cpp
-D:\BootCamp\CrackingTheCode\Annak\World.h(43,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\BootCamp\CrackingTheCode\Annak\World.h(47,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Game.cpp
+  Tile.cpp
+  World.cpp
+D:\BootCamp\CrackingTheCode\Annak\World.cpp(42,35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\BootCamp\CrackingTheCode\Annak\World.cpp(55,35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\BootCamp\CrackingTheCode\Annak\World.cpp(59,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
   Annak.vcxproj -> D:\BootCamp\CrackingTheCode\Annak\x64\Debug\Annak.exe

@@ -16,7 +16,12 @@ public:
     ConfigurationReader();
     void printAll();
     inline json getJsonObject() {
+        /*nlohmann::json_abi_v3_11_3::json  sizes= jsonObject["Sizes"];*/
         return jsonObject;
+    }
+
+    inline nlohmann::json_abi_v3_11_3::json getData(string s) {
+        return jsonObject[s];
     }
 
     //// Example of accessing specific values

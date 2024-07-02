@@ -1,47 +1,76 @@
 #include "World.h"
+#include "Game.h"
 using namespace std;
-//World* World::instance = nullptr;
-//mutex World::mtx;
-//void World::fillTile(int i, int j,int category) {
-//    for (int a = i; a < a + 5; a++) {
-//        for(int b=j;b<j+5;b++){
-//            board[a][b] = category;
-//        }
-//    }
-//}
-//
-//World& World::getInstance(const vector<vector<int>>& b) {
-//    lock_guard<mutex> guard(mtx);
-//    if (!instance) {
-//        instance = new World(b);
-//    }
-//    return *instance;
-//}
-//World::World(const vector<vector<int>>& b) {
-//    for (int i = 0; i < b[0].size(); i++) {
-//        for (int j = 0; j < b.size(); j++) {
-//            fillTile(i * 5, j * 5,b[i][j]);
-//        }
-//    }
-//}
-//World::~World() {
-//    cout << "World destroyed" << endl;
-//}
-//void World::printBoard() const {
-//    for (const auto& row : board) {
-//        for (int cell : row) {
-//            cout << cell << " ";
-//        }
-//        cout << endl;
-//    }
-//}
+
+World::World(vector<vector<int>>& initialBoard)
+{
+    initTilesBoard(initialBoard);
+    initCellsBoard(initialBoard);
+    //printBoard();
+}
+
+void World::printBoard() const
+{
+    /*for (const auto& row : cellBoard) {
+        for (Cell cell : row) {
+            cout <<  << " ";
+        }
+        cout << endl;
+    }*/
+}
 
 int World::getType(int x, int y)
 {
-	if (board.size() <= x || x < 0 || board[x].size() <= y || y < 0) {
+	if (cellsBoard.size() <= x || x < 0 || cellsBoard[x].size() <= y || y < 0) {
 		cout << "This location doesn't exist ";
 		return -1;
 	}
-	cout << board[x][y];
-	return board[x][y];
+	cout << cellsBoard[x][y].getTile()->getType();
+	return  cellsBoard[x][y].getTile()->getType();
 }
+
+vector<int>& World::getResourcesByCell(int x, int y)
+{
+    if (cellsBoard.size() <= x || x < 0 || cellsBoard[x].size() <= y || y < 0) {
+        throw "This location doesn't exist ";
+    }
+    return cellsBoard[x][y].getTile()->getResources();
+}
+
+void World::initTilesBoard(vector<vector<int>>& initialBoard)
+{
+    int rows = initialBoard.size();
+    int cols = 0;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < initialBoard[i].size(); ++j) {
+            tilesBoard[i][j] = Tile(initialBoard[i][j]);
+        }
+    }
+}
+
+void World::initCellsBoard(vector<vector<int>>& initialBoard)
+{
+
+    sizeOfTile = Game::reader.getData("Sizes")["Tile"];
+    int rows = initialBoard.size();
+    int cols = 0;
+    for (const auto& row : initialBoard) {
+        if (row.size() > cols) {
+            cols = row.size();
+        }
+    }
+
+    cellsBoard.resize(rows * sizeOfTile[0], vector<Cell>(cols * sizeOfTile[1], NULL));
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < initialBoard[i].size(); ++j) {
+            for (int k = 0; k < 5; ++k) {
+                for (int l = 0; l < 5; ++l) {
+                    cellsBoard[i * 5 + k][j * 5 + l] = Cell(&tilesBoard[i][j]);
+                }
+            }
+        }
+    }
+
+}
+
