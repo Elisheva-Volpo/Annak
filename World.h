@@ -23,6 +23,7 @@ public:
 
     int getType(int x,int y);
     vector<int>& getResourcesByCell(int x, int y);
+    void addResources(int amount, string resource, int x, int y);
     
 
 private:

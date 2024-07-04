@@ -8,7 +8,7 @@ class Game
 public:
 	static ConfigurationReader reader;
 	static vector<string> tiles;
-
+	
 	static void initTiles() {
 		nlohmann::json_abi_v3_11_3::json t = reader.getData("Tiles");
 		for (auto& element : t.items()) {
@@ -17,6 +17,7 @@ public:
 			tiles[index] = key;
 		}
 	}
+
 };
 
 

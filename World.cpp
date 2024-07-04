@@ -37,6 +37,8 @@ vector<int>& World::getResourcesByCell(int x, int y)
     return cellsBoard[x][y].getTile()->getResources();
 }
 
+
+
 void World::initTilesBoard(vector<vector<int>>& initialBoard)
 {
     int rows = initialBoard.size();
@@ -72,5 +74,12 @@ void World::initCellsBoard(vector<vector<int>>& initialBoard)
         }
     }
 
+
 }
 
+
+void World::addResources(int amount, string resource, int x, int y)
+{   
+    cellsBoard[x - 1][y - 1].getTile()->setResources(amount,resource);
+
+}
